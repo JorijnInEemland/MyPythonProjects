@@ -11,6 +11,10 @@ def lesser_of_two_evens(a, b):
         # Return the smaller number
         return a if a < b else b
 
+# Areas to improve:
+# I should have used the min and max functions
+# return max(a,b) if a%2 or b%2 else min(a,b)
+
 # Testing
 print("Lesser of two evens:")
 print(f"    {lesser_of_two_evens(2,4)}")
@@ -24,6 +28,11 @@ def animal_crackers(words):
         return True
     else:
         return False
+
+# Areas to improve:
+# Could have taken less lines
+# words = words.lower().split()
+# return len(words) > 1 and words[0][0] == words[1][0]
 
 # Testing
 print("Animal Crackers:")
@@ -61,6 +70,10 @@ def old_macdonald(name):
             new_name.append(letter)
     return "".join(new_name)
 
+# Areas to improve:
+# Wow what a mess, instead do something like
+# return name[:3].capitalize() + name[3:].capitalize()
+
 # Testing
 print("Old macdonald:")
 print(f"    {old_macdonald('mAcDoNaLd')}")
@@ -72,6 +85,11 @@ def master_yoda(sentence):
         new_sentence.append(word)
         new_sentence.append(' ')
     return ''.join(new_sentence[:-1])
+
+# Areas to improve:
+# I didn't know "x".join() puts the x between each item
+# with that the whole function could be just
+# return ' '.join(sentence.split()[::-1])
 
 # Testing
 print("Master yoda:")
@@ -94,6 +112,13 @@ def has_33(mylist):
             return False
         if integer == mylist[index + 1] == 3:
             return True
+
+# Areas to improve:
+# This can be made a lot slicker
+# for index in range(len(mylist)-1):
+#     if mylist[i] == nums[i+1] == 3:
+#         return True
+# return False
 
 # Testing
 print('Find 33:')
@@ -118,6 +143,9 @@ def blackjack(a, b, c):
         abc -= 10
     return abc if abc <= 21 else 'BUST'
 
+# Perhaps I should've used sum([a,b,c]) instead of a + b + c
+# It might make sense to use if 11 in [a,b,c] instead of if a == 11 or b == 11 or c == 11
+
 # Testing
 print("Blackjack:")
 print(f"    {blackjack(5, 6, 7)}")
@@ -138,6 +166,8 @@ def summer_of_69(array):
         summer += item
     return summer
 
+# He did it quite differently but eh it's the same amount of lines an this works and makes sense to me
+
 # Testing
 print("Summer of '69:")
 print(f"    {summer_of_69([1, 3, 5, 6, 8])}")
@@ -150,6 +180,10 @@ def spy_game(numbers):
             return False
         if numbers[index : index + 3] == [0, 0, 7]:
             return True
+
+# Whoops I misinterpreted the exercise
+# I thought 007 had to be consecutive
+# But apparently 0 3 0 5 0 7 0 is also allowed
 
 # Testing
 print("Spy game:")
@@ -171,6 +205,17 @@ def count_primes(num):
         if is_prime(x):
             count += 1
     return count
+
+# This is computationally inefficient and not clean enough
+# I should have done it all in one function
+# I should have made a list of prime numbers and only divided by those
+# Apparently python has for else, example:
+# for x in range(10):
+#     if x > 5:
+#         break
+# else:
+#     do something
+# This only runs the else if the for loop had a break
 
 # Testing
 print("Count primes:")
