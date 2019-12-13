@@ -13,7 +13,7 @@ class TicTacToe:
     def generate(self, size):
         '''Generate a board of the given width and height'''
         self.size = size
-        self.board = list(range(size * size))
+        self.board = [str(n) for n in list(range(size * size))]
         self.player = 'X'
 
     def display(self):
@@ -24,13 +24,13 @@ class TicTacToe:
 
     def turn(self):
         '''Make the player choose a position, fill it in on the board, swap who's playing'''
-        position = int(input(f"Player {self.player}, choose a position: "))
+        position = input(f"Player {self.player}, choose a position: ")
 
         if position not in self.board:
             print(f"Can't choose this position, try again")
             return True
 
-        self.board[position] = self.player
+        self.board[int(position)] = self.player
         self.player = 'X' if self.player == 'O' else 'O'
 
     def check(self):
@@ -40,19 +40,19 @@ class TicTacToe:
         for row in range(0, self.size * self.size, self.size):
             row = self.board[row : row + self.size]
 
-            if all([i == 'X' for i in row]):
+            if all(i == 'X' for i in row):
                 winner = 'X'
 
-            if all([i == 'O' for i in row]):
+            if all(i == 'O' for i in row):
                 winner = 'O'
 
-        for col in range(0, self.size * self.size):
+        for col in range(0, self.size):
             col = self.board[col :: self.size]
 
-            if all([i == 'X' for i in col]):
+            if all(i == 'X' for i in col):
                 winner = 'X'
 
-            if all([i == 'O' for i in col]):
+            if all(i == 'O' for i in col):
                 winner = 'O'
 
         # TODO: Add diagonals and ties
