@@ -6,15 +6,12 @@
 
 class TicTacToe:
     '''Tic Tac Toe happens here'''
-    size = None
-    board = None
-    player = None
-
-    def generate(self, size):
+    def __init__(self, size):
         '''Generate a board of the given width and height'''
         self.size = size
-        self.board = [str(i) for i in list(range(size * size))]
+        self.board = [str(i) for i in list(range(self.size * self.size))]
         self.player = 'X'
+        self.stop = False
 
     def display(self):
         '''Print the board to the console'''
@@ -25,6 +22,10 @@ class TicTacToe:
     def turn(self):
         '''Make the player choose a position, fill it in on the board, swap who's playing'''
         position = input(f"Player {self.player}, choose a position: ")
+
+        if position == 'exit':
+            self.stop = True
+            return False
 
         if position not in self.board:
             print(f"Can't choose this position, try again")
@@ -58,7 +59,21 @@ class TicTacToe:
             elif all(i == 'O' for i in col):
                 winner = 'O'
 
-        # TODO: Add diagonals and ties
+        dia = self.board[:: self.size + 1]
+
+        if all(i == 'X' for i in dia):
+            winner = 'X'
+
+        if all(i == 'O' for i in dia):
+            winner = 'O'
+
+        dia = self.board[self.size - 1 : self.size * self.size - 1 : self.size - 1]
+
+        if all(i == 'X' for i in dia):
+            winner = 'X'
+
+        if all(i == 'O' for i in dia):
+            winner = 'O'
 
         if winner in {'X', 'O'}:
             print(f"Player {winner} won!")
@@ -79,7 +94,14 @@ class TicTacToe:
             while(self.turn()):
                 pass
 
+            if self.stop:
+                self.stop = False
+                break
 
-tictactoe = TicTacToe()
-tictactoe.generate(3)
+    def reset(self):
+        self.board = [str(i) for i in list(range(self.size * self.size))]
+        self.player = 'X'
+
+
+tictactoe = TicTacToe(3)
 tictactoe.start()
