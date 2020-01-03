@@ -37,13 +37,16 @@ class TicTacToe:
         '''Check whether the game has been won'''
         winner = None
 
+        if all(i in {'X', 'O'} for i in self.board):
+            winner = 'TIE'
+
         for row in range(0, self.size * self.size, self.size):
             row = self.board[row : row + self.size]
 
             if all(i == 'X' for i in row):
                 winner = 'X'
 
-            if all(i == 'O' for i in row):
+            elif all(i == 'O' for i in row):
                 winner = 'O'
 
         for col in range(0, self.size):
@@ -52,7 +55,7 @@ class TicTacToe:
             if all(i == 'X' for i in col):
                 winner = 'X'
 
-            if all(i == 'O' for i in col):
+            elif all(i == 'O' for i in col):
                 winner = 'O'
 
         # TODO: Add diagonals and ties
@@ -61,7 +64,7 @@ class TicTacToe:
             print(f"Player {winner} won!")
             return True
 
-        if winner == 'TIE':
+        elif winner == 'TIE':
             print(f"The game was a tie!")
             return True
 
