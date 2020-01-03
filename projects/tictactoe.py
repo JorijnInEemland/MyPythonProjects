@@ -13,7 +13,7 @@ class TicTacToe:
     def generate(self, size):
         '''Generate a board of the given width and height'''
         self.size = size
-        self.board = [str(n) for n in list(range(size * size))]
+        self.board = [str(i) for i in list(range(size * size))]
         self.player = 'X'
 
     def display(self):
@@ -57,7 +57,7 @@ class TicTacToe:
 
         # TODO: Add diagonals and ties
 
-        if winner in ['X', 'O']:
+        if winner in {'X', 'O'}:
             print(f"Player {winner} won!")
             return True
 
